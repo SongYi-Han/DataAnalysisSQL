@@ -22,9 +22,8 @@ WHERE a.trans_type = b.trans_type
 	  and a.death_num = b.death_max;
 	  
 ---3.
-SELECT trans_type
-      ,ROUND(AVG(death_num/total_acc_num  * 100),0) death_per
+SELECT trans_type, sum(death_num) total_deaths, sum(total_acc_num) total_accidents
+      , Round(AVG(death_num/total_acc_num  * 100),2) death_per_accident
   FROM traffic_accident
  WHERE total_acc_num > 0
  GROUP BY trans_type;
-
